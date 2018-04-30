@@ -2,7 +2,7 @@
   "name": "SongQ-Node",
   "version": "1.0.0",
   "description": "",
-  "main": ".js",
+  "main": "app.js",
   "engines": {
     "node": ">=0.10.22",
     "npm": ">=1.3.14"
