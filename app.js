@@ -17,7 +17,12 @@ app.listen(port, function() {
 
 app.get('/api/get-playlists/:owner', function(request, response) { //get someones playlists
   let ownerId = request.params.owner;
-  let owner = new User({ id: ownerId });
+  let playlist = new Playlist({ owner: ownerId });
+  Playlist.where({owner:ownerId}).fetchAll()
+    .then(function(playlist) {
+      response.json(playlist);
+    })
+/*  let owner = new User({ id: ownerId });
   owner.fetch()
     .then(function(user) {
       console.log(this);
@@ -25,13 +30,15 @@ app.get('/api/get-playlists/:owner', function(request, response) { //get someone
         throw new Error(`User ${ownerId} not found`);
       } else {
         console.log("id " + this.attributes.id);
-        let playlist = new Playlist({ owner: this.attributes.id});
+        let playlist = new Playlist({ owner: ownerId });
         playlist.fetch()
           .then(function(playlist) {
             console.log('here2');
             response.json(playlist)
         }, function(error) {
-            console.log(error);
+            response.status(400).json({
+              error: error.message
+            });
         });
       }
     })
@@ -40,7 +47,7 @@ app.get('/api/get-playlists/:owner', function(request, response) { //get someone
     response.status(400).json({
       error: error.message
     });
-  });
+  });*/
 });
 // ERROR: fetches only one
 
