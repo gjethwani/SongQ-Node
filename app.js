@@ -10,11 +10,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-const port = process.env.port || 8000;
-app.listen(port, function() {
-  console.log(`Listening on port ${port}`);
-});
-
 app.get('/api/get-playlists/:owner', function(request, response) { //get someones playlists
   let ownerId = request.params.owner;
   let playlist = new Playlist({ owner: ownerId });
@@ -142,4 +137,9 @@ app.delete('/api/retract-request/:id', function(request, response) {
           error: `Could not find request with id ${id}`
         });
     })
+});
+
+const port = process.env.port || 8000;
+app.listen(port, function() {
+  console.log(`Listening on port ${port}`);
 });
