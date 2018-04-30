@@ -139,7 +139,7 @@ app.delete('/api/retract-request/:id', function(request, response) {
     })
 });
 
-const port = process.env.port || 8000;
+const port = process.env.port || 5000;
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);
 });
